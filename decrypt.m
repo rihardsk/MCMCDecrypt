@@ -3,7 +3,7 @@
 
 %p = train(text);
 
-function [text, bestMapping] = decrypt(coded, transitions)
+function [text, bestMapping] = decrypt(coded, transitions, iterations)
 
 	
 	
@@ -13,7 +13,7 @@ function [text, bestMapping] = decrypt(coded, transitions)
 	decoded = decode(coded, mapping);
 	prob = logProb(decoded, transitions);
 	bestProb = prob;
-	iters = 2000;
+	iters = iterations;
 	i = 1
 	
 	while i <= iters
