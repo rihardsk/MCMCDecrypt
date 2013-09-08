@@ -1,12 +1,13 @@
 function p = train(text)
+text = upper(text);
 
 p = zeros(27, 27);
 n = size(text,1);
 
-lastLetter = text(1);
+lastLetter = ' ';
 
 
-for i = 2:n
+for i = 1:n
 	if lastLetter >= 'A' && lastLetter <= 'Z'
 		lastInd = lastLetter - 'A' + 1;
 	else
@@ -20,14 +21,18 @@ for i = 2:n
 		curInd = 27;
 	end
 	
-	p(lastInd, curInd) = p(lastInd, curInd) + 1;
+	if ((lastInd != 27) || (curInd != 27))
+		p(lastInd, curInd) = p(lastInd, curInd) + 1;
+	end
 	
 	lastLetter = cur;
 end
 
+p
 p = p + ones(27, 27);
+display(p);
 
-sums = sum(p, 2);
-p = p ./ sums;
+sums = sum(p, 2)
+p = p ./ sums
 
 end

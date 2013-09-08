@@ -3,7 +3,9 @@
 
 %p = train(text);
 
-function text = decrypt(coded, transitions)
+function [text, bestMapping] = decrypt(coded, transitions)
+
+	
 	
 	mapping = randperm(27)';
 	
@@ -27,6 +29,7 @@ function text = decrypt(coded, transitions)
 		
 		ratio = exp(proposedProb - prob);
 		r = rand(1,1);
+		%fprintf('\ncomparing. prop_lp = %f, cur_lp = %f, ratio = %f, r = %f ', proposedProb, prob, ratio, r);
 		if r <= ratio
 			mapping = proposal;
 			prob = proposedProb;
@@ -34,12 +37,13 @@ function text = decrypt(coded, transitions)
 			if prob > bestProb
 				bestProb = prob;
 				bestMapping = mapping;
+				fprintf('best ');
 			end
 			
-			i = i+1;
-			fprintf('picked: %i\n', i);
+			i = i+1
+			%fprintf('picked: %i, lp = %f, \n', i, prob);
 		else
-			fprintf('rejected\n');		
+			%fprintf('rejected\n');		
 		end
 	end
 	
