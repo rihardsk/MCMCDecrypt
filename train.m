@@ -28,11 +28,11 @@ for i = 1:n
 	lastLetter = cur;
 end
 
-p
+%p
 p = p + ones(27, 27);
 display(p);
 
-sums = sum(p, 2)
-p = p ./ sums
+sums = sum(p, 2);
+p = p ./ sums;
 
 end
